@@ -18,7 +18,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          repository: inoyna111/jd28        
+          repository: inoyna12/jd28        
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
@@ -33,7 +33,7 @@ jobs:
       - name: npm install
         run: |
           npm install
-      - name: '运行jd_joy_steal'
+      - name: '运行[偷好友积分与狗粮]'
         run: |
           node jd_joy_steal.js
         env:
