@@ -23,7 +23,7 @@ jobs:
         uses: repo-sync/github-sync@v2
         if: env.PAT
         with:
-          source_repo: "https://github.com/inoyna111/jd28.git"
+          source_repo: "https://github.com/inoyna12/jd28.git"
           source_branch: "master"
           destination_branch: "master"
           github_token: ${{ github.event.client_payload.PAT || secrets.PAT }}
