@@ -2104,7 +2104,6 @@ function _618(_0xce999c, _0x1f93d4, _0xa95934 = _0x2e68('5d', 'THJ&')) {
 
 // prettier-ignore
 function Env(t, e) {
-  "undefined" != typeof process && JSON.stringify(process.env).indexOf("GITHUB") > -1 && process.exit(0);
 
   class s {
     constructor(t) {
