@@ -6,7 +6,7 @@ name: 东东电竞经理
 on:
   workflow_dispatch:
   schedule:
-    - cron: '15 2 * * *'
+    - cron: '0 0-23/2 * * *'
   
   watch:
     types: started
@@ -39,7 +39,7 @@ jobs:
          
       - name: '运行'
         run: |
-          node zooElecsport.js
+          node jd_EsportsManager.js
          
           
         env:
