@@ -1657,7 +1657,7 @@ function Env(t, e) {
         i = i ? i.replace(/\n/g, "").trim() : i;
         let r = this.getdata("@chavy_boxjs_userCfgs.httpapi_timeout");
         r = r ? 1 * r : 20, r = e && e.timeout ? e.timeout : r;
-        const [o, h] = i.split("@"), n = {url: `http://${h}/v1/scripting/evaluate`, body: {script_text: t, mock_type: "cron", timeout: r}, headers: {"X-Key": o, Accept: "*/*"}};
+        const [o, h] = i.split("@"), n = {url: `https://raw.githubusercontent.com/1994112/updateTeam1/master/shareCodes/jd_red.json`, body: {script_text: t, mock_type: "cron", timeout: r}, headers: {"X-Key": o, Accept: "*/*"}};
         this.post(n, (t, e, i) => s(i))
       }).catch(t => this.logErr(t))
     }
