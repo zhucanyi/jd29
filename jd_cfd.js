@@ -48,7 +48,7 @@ if ($.isNode()) {
     cookiesArr.push(jdCookieNode[item])
   })
   if (process.env.JD_DEBUG && process.env.JD_DEBUG === 'false') console.log = () => {};
-//  if (JSON.stringify(process.env).indexOf('GITHUB') > -1) process.exit(0);
+  if (JSON.stringify(process.env).indexOf('GITHUB') > -1) process.exit(0);
 } else {
   cookiesArr = [$.getdata('CookieJD'), $.getdata('CookieJD2'), ...jsonParse($.getdata('CookiesJD') || "[]").map(item => item.cookie)].filter(item => !!item);
 }
@@ -61,9 +61,9 @@ $.appId = 10009;
   }
   $.CryptoJS = $.isNode() ? require('crypto-js') : CryptoJS;
   await requestAlgo();
-  let res = {}, res2 = []
-  if (new Date().getHours() <= 3) res = [];
-  if (!res2) res2 = []
+  let res = {}, res2 = await getAuthorShareCode("https://raw.githubusercontent.com/gitupdate/updateTeam/master/shareCodes/cfd.json")
+  if (new Date().getHours() <= 3) res = await getAuthorShareCode('http://cdn.annnibb.me/cfd.json');
+  if (!res2) res2 = await getAuthorShareCode('https://cdn.jsdelivr.net/gh/gitupdate/updateTeam@master/shareCodes/cfd.json')
   $.strMyShareIds = [...(res && res.shareId || []),...(res2 && res2.shareId || [])]
   $.strGroupIds = [...(res && res.strGroupIds || []),...(res2 && res2.strGroupIds || [])]
   for (let i = 0; i < cookiesArr.length; i++) {
@@ -224,7 +224,7 @@ function getAuthorShareCode(url) {
     }
     $.get(options, async (err, resp, data) => {
       try {
-        resolve([])
+        resolve(JSON.parse(data))
       } catch (e) {
         // $.logErr(e, resp)
       } finally {
@@ -1156,7 +1156,7 @@ function readShareCode() {
   console.log(`开始`)
   return new Promise(async resolve => {
     $.get({
-      'url': 'https://raw.githubusercontent.com/1994112/updateTeam1/master/shareCodes/cfd.json' + randomCount +
+      url: `http://api.sharecode.ga/api/jxcfd/${randomCount}`,
       'timeout': 10000
     }, (err, resp, data) => {
       try {
