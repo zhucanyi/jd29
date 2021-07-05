@@ -1,21 +1,14 @@
 /**
- * 扫码获取京东cookie，此方式得到的cookie有效期为90天(实际待测试)
- * @Author: LXK9301 https://github.com/LXK9301
- * @Date: 2021-01-13 12:12:40
- * @Last Modified by: LXK9301
- * @Last Modified time: 2021-01-13 12:22:54
- * Modify from FanchangWang https://github.com/FanchangWang
+ * 扫码获取京东cookie，此方式得到的cookie有效期为30天
+ * 柠檬修复版
  */
 const $ = new Env('扫码获取京东cookie');
-const notify = $.isNode() ? require('./sendNotify') : '';
 const qrcode = require('qrcode-terminal');
-let s_token, cookies, guid, lsid, lstoken, okl_token, token;
-let message = '';
+let s_token, cookies, guid, lsid, lstoken, okl_token, token
 !(async () => {
   await loginEntrance();
   await generateQrcode();
   await getCookie();
-
 })()
     .catch((e) => {
       $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
@@ -57,21 +50,14 @@ function generateQrcode() {
           $.stepsHeaders = resp.headers;
           data = JSON.parse(data);
           token = data['token'];
-		  
-		  
-           //$.log('https://plogin.m.jd.com/cgi-bin/m/tmauth?appid=300&client_type=m&token=' + token)
+          // $.log('token', token)
 
           const setCookie = resp.headers['set-cookie'][0];
           okl_token = setCookie.substring(setCookie.indexOf("=") + 1, setCookie.indexOf(";"))
           const url = 'https://plogin.m.jd.com/cgi-bin/m/tmauth?appid=300&client_type=m&token=' + token;
-		  console.log("请打开 京东APP 扫码登录(二维码有效期为3分钟)");
-		  console.log("方法一：点击下面的二维码直链");
-		  $.log('https://cli.im/api/qrcode/code?text=https://plogin.m.jd.com/cgi-bin/m/tmauth?appid=300%26client_type=m%26token=' + token + '&mhid=vRbOCQztnMIhMHYsLtVRMKk')
-		  console.log("\n\n如果直链失效，请复制#下方链接#到 https://cli.im/url 生成二维码\n");
-		  $.log(url)
-          //qrcode.generate(url, {small: true}); // 输出二维码
-		  
-          
+          qrcode.generate(url, {small: true}); // 输出二维码
+          console.log("请打开 京东APP 扫码登录(二维码有效期为3分钟)");
+          console.log(`\n\n注：如扫描不到，请使用工具(例如在线二维码工具：https://cli.im)手动生成如下url二维码\n\n${url}\n\n`);
         }
       } catch (e) {
         $.logErr(e, resp)
@@ -93,7 +79,7 @@ function checkLogin() {
         'Connection': 'Keep-Alive',
         'Content-Type': 'application/x-www-form-urlencoded; Charset=UTF-8',
         'Accept': 'application/json, text/plain, */*',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.111 Safari/537.36',
+        'User-Agent': 'jdapp;android;10.0.5;11;0393465333165363-5333430323261366;network/wifi;model/M2102K1C;osVer/30;appBuild/88681;partner/lc001;eufv/1;jdSupportDarkMode/0;Mozilla/5.0 (Linux; Android 11; M2102K1C Build/RKQ1.201112.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/77.0.3865.120 MQQBrowser/6.2 TBS/045534 Mobile Safari/537.36',
       }
     }
     $.post(options, (err, resp, data) => {
@@ -146,13 +132,9 @@ function formatCookie(headers) {
     pt_pin = pt_pin.substring(pt_pin.indexOf("=") + 1, pt_pin.indexOf(";"))
     const cookie1 = "pt_key=" + pt_key + ";pt_pin=" + pt_pin + ";";
 
-    $.UserName = decodeURIComponent(cookie1.match(/pt_pin=(.+?);/) && cookie1.match(/pt_pin=(.+?);/)[1])
-    $.log(`京东用户：${$.UserName} Cookie获取成功(有效期：${headers['strict-transport-security'].substring("max-age=7776000".indexOf('=') + 1, "max-age=7776000".length)}秒)，cookie如下：`);
-    //$.log(`\n${cookie1}\n`);
-	$.log(`\ncookie已通过通知发送，请查收\n`);
-		message += `Cookie如下：\n${cookie1}\n`;
-		notify.sendNotify(`京东用户：${$.UserName} Cookie获取成功` ,message);
-		//$.log(`${$.UserName} Cookie获取成功\n ${message}`);
+    $.UserName = decodeURIComponent(cookie1.match(/pt_pin=([^; ]+)(?=;?)/) && cookie1.match(/pt_pin=([^; ]+)(?=;?)/)[1])
+    $.log(`京东用户：${$.UserName} Cookie获取成功，cookie如下：`);
+    $.log(`\n${cookie1}\n`);
     resolve()
   })
 }
@@ -180,7 +162,7 @@ function taskUrl() {
       'Accept': 'application/json, text/plain, */*',
       'Accept-Language': 'zh-cn',
       'Referer': `https://plogin.m.jd.com/login/login?appid=300&returnurl=https://wq.jd.com/passport/LoginRedirect?state=${Date.now()}&returnurl=https://home.m.jd.com/myJd/newhome.action?sceneval=2&ufc=&/myJd/home.action&source=wq_passport`,
-      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.111 Safari/537.36',
+      'User-Agent': 'jdapp;android;10.0.5;11;0393465333165363-5333430323261366;network/wifi;model/M2102K1C;osVer/30;appBuild/88681;partner/lc001;eufv/1;jdSupportDarkMode/0;Mozilla/5.0 (Linux; Android 11; M2102K1C Build/RKQ1.201112.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/77.0.3865.120 MQQBrowser/6.2 TBS/045534 Mobile Safari/537.36',
       'Host': 'plogin.m.jd.com'
     }
   }
@@ -196,7 +178,7 @@ function taskPostUrl() {
       'Accept': 'application/json, text/plain, */*',
       'Accept-Language': 'zh-cn',
       'Referer': `https://plogin.m.jd.com/login/login?appid=300&returnurl=https://wq.jd.com/passport/LoginRedirect?state=${Date.now()}&returnurl=https://home.m.jd.com/myJd/newhome.action?sceneval=2&ufc=&/myJd/home.action&source=wq_passport`,
-      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.111 Safari/537.36',
+      'User-Agent': 'jdapp;android;10.0.5;11;0393465333165363-5333430323261366;network/wifi;model/M2102K1C;osVer/30;appBuild/88681;partner/lc001;eufv/1;jdSupportDarkMode/0;Mozilla/5.0 (Linux; Android 11; M2102K1C Build/RKQ1.201112.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/77.0.3865.120 MQQBrowser/6.2 TBS/045534 Mobile Safari/537.36',
       'Host': 'plogin.m.jd.com'
     }
   }
