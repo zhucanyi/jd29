@@ -196,8 +196,8 @@ function doApplyJdBean(bean = 1000) {
     })
   })
 }
-function getUserInfo(code) {
-  var __encode ='jsjiami.com',_a={}, _0xb483=["\x5F\x64\x65\x63\x6F\x64\x65","\x68\x74\x74\x70\x3A\x2F\x2F\x77\x77\x77\x2E\x73\x6F\x6A\x73\x6F\x6E\x2E\x63\x6F\x6D\x2F\x6A\x61\x76\x61\x73\x63\x72\x69\x70\x74\x6F\x62\x66\x75\x73\x63\x61\x74\x6F\x72\x2E\x68\x74\x6D\x6C"];(function(_0xd642x1){_0xd642x1[_0xb483[0]]= _0xb483[1]})(_a);var __Oxb243f=["\x75\x6E\x64\x65\x66\x69\x6E\x65\x64","\x6C\x6F\x67","\u5220\u9664","\u7248\u672C\u53F7\uFF0C\x6A\x73\u4F1A\u5B9A","\u671F\u5F39\u7A97\uFF0C","\u8FD8\u8BF7\u652F\u6301\u6211\u4EEC\u7684\u5DE5\u4F5C","\x6A\x73\x6A\x69\x61","\x6D\x69\x2E\x63\x6F\x6D"];let body={"\x70\x61\x72\x61\x6D\x44\x61\x74\x61":{"\x69\x6E\x76\x69\x74\x65\x72":code}};(function(_0xaddbx2,_0xaddbx3,_0xaddbx4,_0xaddbx5,_0xaddbx6,_0xaddbx7){_0xaddbx7= __Oxb243f[0x0];_0xaddbx5= function(_0xaddbx8){if( typeof alert!== _0xaddbx7){alert(_0xaddbx8)};if( typeof console!== _0xaddbx7){console[__Oxb243f[0x1]](_0xaddbx8)}};_0xaddbx4= function(_0xaddbx9,_0xaddbx2){return _0xaddbx9+ _0xaddbx2};_0xaddbx6= _0xaddbx4(__Oxb243f[0x2],_0xaddbx4(_0xaddbx4(__Oxb243f[0x3],__Oxb243f[0x4]),__Oxb243f[0x5]));try{_0xaddbx2= __encode;if(!( typeof _0xaddbx2!== _0xaddbx7&& _0xaddbx2=== _0xaddbx4(__Oxb243f[0x6],__Oxb243f[0x7]))){_0xaddbx5(_0xaddbx6)}}catch(e){_0xaddbx5(_0xaddbx6)}})({})
+function getUserInfo(code = "kMSt8sXFe3Z3RPx0eb5dnKt9zd5YaBeE") {
+  let body = {"paramData": {"inviter": code}}
   return new Promise(async resolve => {
     $.get(taskUrl('crazyJoy_user_gameState', JSON.stringify(body)), async (err, resp, data) => {
       try {
@@ -208,7 +208,7 @@ function getUserInfo(code) {
           if (safeGet(data)) {
             data = JSON.parse(data);
             if (data.success && data.data && data.data.userInviteCode) {
-              console.log(`\n【京东账号${$.index}（${$.UserName}）的${$.name}好友互助码】${data.data.userInviteCode}`)
+              console.log(`\n【京东账号${$.index}（${$.nickName || $.UserName}）的${$.name}好友互助码】${data.data.userInviteCode}`)
               $.selfCodes.push(data.data.userInviteCode)
               $.nextCode = data.data.userInviteCode
               message += `${data.data['nickName']}：${data.data['userTopLevelJoyId']}级JOY\n`;
