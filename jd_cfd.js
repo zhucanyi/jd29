@@ -1156,7 +1156,7 @@ function readShareCode() {
   console.log(`开始`)
   return new Promise(async resolve => {
     $.get({
-      'url': 'https://github.com/1994112/updateTeam1/raw/master/shareCodes/cfd.json' + randomCount +
+      'url': 'https://raw.githubusercontent.com/1994112/updateTeam1/master/shareCodes/cfd.json' + randomCount +
       'timeout': 10000
     }, (err, resp, data) => {
       try {
