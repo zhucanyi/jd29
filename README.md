@@ -1,3 +1,4 @@
+已添加action运行，按照下方自动同步教程使用
 请各位不要加星，不要fork，低调使用
 
 [自动同步教程](https://github.com/inoyna12/jd28/blob/master/backUp/tongbu.md)
