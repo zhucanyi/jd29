@@ -1,6 +1,6 @@
 /*
 早起福利
-更新时间：2021-7-8
+更新时间：2021-7-8，，，结束时间不知道
 30 6 * * * https://raw.githubusercontent.com/cdle/jd_study/main/jd_goodMorning.js
 */
 const $ = Env("早起福利")
