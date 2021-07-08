@@ -5,8 +5,8 @@ name: ^燃动夏季
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '25 16,0-15/2 * * *'
+  #schedule:
+    #- cron: '25 16,0-15/2 * * *'
   
   watch:
     types: started
