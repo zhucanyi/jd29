@@ -20,7 +20,7 @@ cron "41 0,6-23/3 * * *" script-path=https://raw.githubusercontent.com/jiulan/pl
 const $ = new Env('燃动夏季');
 const notify = $.isNode() ? require('./sendNotify') : '';
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
-const helpAuthorFlag = false;//是否助力作者SH  true 助力，false 不助力
+const helpAuthorFlag = true;//是否助力作者SH  true 助力，false 不助力
 const https = require('https');
 const fs = require('fs/promises');
 const { R_OK } = require('fs').constants;
@@ -142,7 +142,7 @@ if ($.isNode()) {
   if(helpAuthorFlag){
     let res = [];
     try{
-      res = await getAuthorShareCode('https://ghproxy.com/https://raw.githubusercontent.com/jiulan/platypus/main/json/summer_movement.json');
+      res = await getAuthorShareCode('https://gitee.com/seec/share-codes/raw/master/jd_summer_movement.json');
     }catch (e) {}
     if(!res){res = [];}
     let allCodeList = getRandomArrayElements([ ...res],[ ...res].length);
