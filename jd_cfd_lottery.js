@@ -3062,7 +3062,7 @@ cron 5 14 * * * jd_cfd.js
     });
     if (process.env.JD_DEBUG && process.env.JD_DEBUG === "false")
       console.log = () => {};
-    if (JSON.stringify(process.env).indexOf("GITHUB") > -1) process.exit(0);
+//    if (JSON.stringify(process.env).indexOf("GITHUB") > -1) process.exit(0);
   } else {
     cookiesArr = [
       $.getdata("CookieJD"),
