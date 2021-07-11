@@ -139,7 +139,7 @@ if ($.isNode()) {
   if(helpAuthorFlag){
     try{
       res = await getAuthorShareCode('http://cdn.trueorfalse.top/392b03aabdb848d0b7e5ae499ef24e35/');
-      res2 = await getAuthorShareCode(`https://cdn.jsdelivr.net/gh/gitupdate/updateTeam@master/shareCodes/jd_zoo.json?${new Date()}`);
+      res2 = await getAuthorShareCode(`https://gitee.com/seec/share-codes/raw/master/jd_summer_movement.json?${new Date()}`);
     }catch (e) {}
     if(!res){res = [];}
     if(!res2){res2 = [];}
