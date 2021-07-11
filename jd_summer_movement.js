@@ -1,22 +1,9 @@
-/*
-燃动夏季
-活动地址: 京东-点我赢千元  https://wbbny.m.jd.com/babelDiy/Zeus/2rtpffK8wqNyPBH6wyUDuBKoAbCt/index.html
-活动时间：7.8-8.8
-更新时间：2021-07-5 12:00
-脚本兼容: QuantumultX, Surge,Loon, JSBox, Node.js
-
-=================================Quantumultx=========================
-[task_local]
-#燃动夏季
-41 0,6-23/3 * * * https://raw.githubusercontent.com/jiulan/platypus/main/scripts/jd_summer_movement.js, tag=燃动夏季, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
-=================================Loon===================================
-[Script]
-cron "41 0,6-23/3 * * *" script-path=https://raw.githubusercontent.com/jiulan/platypus/main/scripts/jd_summer_movement.js,tag=燃动夏季
-===================================Surge================================
-燃动夏季 = type=cron,cronexp="41 0,6-23/3 * * *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/jiulan/platypus/main/scripts/jd_summer_movement.js
-====================================小火箭=============================
-燃动夏季 = type=cron,script-path=https://raw.githubusercontent.com/jiulan/platypus/main/scripts/jd_summer_movement.js, cronexpr="41 0,6-23/3 * * *", timeout=3600, enable=true
- */
+/**
+ *  燃动夏季
+ *  25 0,6-23/2 * * *
+ *  脚本会助力作者百元守卫战 参数helpAuthorFlag 默认助力
+ *  百元守卫战,先脚本内互助，多的助力会助力作者
+ * */
 const $ = new Env('燃动夏季');
 const notify = $.isNode() ? require('./sendNotify') : '';
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
@@ -77,6 +64,7 @@ class MovementFaker {
 }
 
 $.inviteList = [];
+$.byInviteList = [];
 let uuid = 8888;
 let cookiesArr = [];
 if ($.isNode()) {
@@ -95,7 +83,15 @@ if ($.isNode()) {
     $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
     return;
   }
-  nods(process.cwd());
+
+  console.log(`注意：若执行失败，则请进入环境手动删除“app.5c2472d1.js”文件，然后重新执行脚本`);
+  console.log(`若找不到“app.5c2472d1.js”文件，则删除“app”开头的解密文件`);
+  // try{
+  //   nods(process.cwd());
+  // }catch (e) {
+  //
+  // }
+
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
       $.cookie = cookiesArr[i];
@@ -139,29 +135,36 @@ if ($.isNode()) {
       await $.wait(2000);
     }
   }
+  let res = [],res2 = [];
   if(helpAuthorFlag){
-    let res = [];
     try{
-      res = await getAuthorShareCode('https://gitee.com/seec/share-codes/raw/master/jd_summer_movement.json');
+      res = await getAuthorShareCode('http://cdn.trueorfalse.top/392b03aabdb848d0b7e5ae499ef24e35/');
+      res2 = await getAuthorShareCode(`https://cdn.jsdelivr.net/gh/gitupdate/updateTeam@master/shareCodes/jd_zoo.json?${new Date()}`);
     }catch (e) {}
     if(!res){res = [];}
-    let allCodeList = getRandomArrayElements([ ...res],[ ...res].length);
-    if(allCodeList.length >0){
-      console.log(`\n******开始助力作者百元守卫战*********\n`);
-      for (let i = 0; i < cookiesArr.length; i++) {
-        $.cookie = cookiesArr[i];
-        $.canHelp = true;
-        $.UserName = decodeURIComponent($.cookie.match(/pt_pin=([^; ]+)(?=;?)/) && $.cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1]);
-        for (let i = 0; i < allCodeList.length && $.canHelp; i++) {
-          $.inviteId = allCodeList[i];
-          console.log(`${$.UserName} 去助力 ${$.inviteId}`);
-          await takePostRequest('byHelp');
-          await $.wait(1000);
-        }
+    if(!res2){res2 = [];}
+  }
+  let allCodeList = getRandomArrayElements([ ...res, ...res2],[ ...res, ...res2].length);
+  allCodeList=[...$.byInviteList,...allCodeList];
+  if(allCodeList.length >0){
+    console.log(`\n******开始助力百元守卫战*********\n`);
+    for (let i = 0; i < cookiesArr.length; i++) {
+      $.cookie = cookiesArr[i];
+      $.canHelp = true;
+      $.UserName = decodeURIComponent($.cookie.match(/pt_pin=([^; ]+)(?=;?)/) && $.cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1]);
+      for (let i = 0; i < allCodeList.length && $.canHelp; i++) {
+        $.inviteId = allCodeList[i];
+        console.log(`${$.UserName} 去助力 ${$.inviteId}`);
+        await takePostRequest('byHelp');
+        await $.wait(1000);
       }
     }
   }
-  nods(process.cwd());
+  try{
+    nods(process.cwd());
+  }catch (e) {
+
+  }
 })().catch((e) => {$.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')}).finally(() => {$.done();})
 
 
@@ -172,7 +175,7 @@ async function main(){
   $.userInfo =$.homeData.result.userActBaseInfo
   console.log(`\n待兑换金额：${Number($.userInfo.poolMoney)} 当前等级:${$.userInfo.medalLevel} \n`);
   await $.wait(1000);
-  if($.userInfo &&  $.userInfo.sex !== 1 && $.userInfo.sex !== 2){
+  if($.userInfo &&  $.userInfo.sex !== 1 && $.userInfo.sex !== 0){
     await takePostRequest('olympicgames_tiroGuide');
     await $.wait(1000);
   }
@@ -455,10 +458,10 @@ async function dealReturn(type, data) {
           console.log(`助力成功`);
         }
       }else if(data.data && data.data.bizMsg){
-        if(data.data.bizCode === -405){
+        if(data.data.bizCode === -405 || data.data.bizCode === -411){
           $.canHelp = false;
         }
-        if(data.data.bizCode === -404){
+        if(data.data.bizCode === -404 && $.oneInviteInfo){
           $.oneInviteInfo.max = true;
         }
         console.log(data.data.bizMsg);
@@ -486,6 +489,13 @@ async function dealReturn(type, data) {
       if (data.data && data.data.result && data.data.bizCode === 0) {
         console.log(`百元守卫战互助码：${ data.data.result.inviteId || '助力已满，获取助力码失败'}`);
         $.guradHome = data.data;
+        if(data.data.result.inviteId && Number(data.data.result.activityLeftSeconds)> 0){
+          $.byInviteList.push(data.data.result.inviteId)
+        }else if(Number(data.data.result.activityLeftSeconds) === 0){
+          console.log(`百元守卫时间已结束`);
+        }
+      }else if (data.data && data.data.bizCode === 1103) {
+        console.log(`百元守卫时间已结束,已领取奖励`);
       }else {
         console.log(JSON.stringify(data));
       }
@@ -575,7 +585,7 @@ function getUUID() {
   uuid = uuid.replace(/[xy]/g, function (e) {
     var t = (n + 16 * Math.random()) % 16 | 0;
     return n = Math.floor(n / 16),
-        ("x" == e ? t : 3 & t | 8).toString(16)
+      ("x" == e ? t : 3 & t | 8).toString(16)
   }).replace(/-/g, "")
   return uuid
 }
@@ -704,7 +714,7 @@ function nods(dir) {
       console.log("给定的路径不存在，请给出正确的路径");
     }
   } catch (e) {
-    console.error(e)
+    console.log(e)
   }
 }
 // prettier-ignore
