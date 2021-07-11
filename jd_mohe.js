@@ -1,24 +1,4 @@
-/*
-5G超级盲盒，可抽奖获得京豆，建议在凌晨0点时运行脚本，白天抽奖基本没有京豆，4小时运行一次收集热力值
-活动地址: https://isp5g.m.jd.com
-活动时间：2021-06-2到2021-07-31
-更新时间：2021-06-3 12:00
-脚本兼容: QuantumultX, Surge,Loon, JSBox, Node.js
-=================================Quantumultx=========================
-[task_local]
-#5G超级盲盒
-0 0,1-23/3 * * * https://gitee.com/lxk0301/jd_scripts/raw/master/jd_mohe.js, tag=5G超级盲盒, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
 
-=================================Loon===================================
-[Script]
-cron "0 0,1-23/3 * * *" script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_mohe.js,tag=5G超级盲盒
-
-===================================Surge================================
-5G超级盲盒 = type=cron,cronexp="0 0,1-23/3 * * *",wake-system=1,timeout=3600,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_mohe.js
-
-====================================小火箭=============================
-5G超级盲盒 = type=cron,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_mohe.js, cronexpr="0 0,1-23/3 * * *", timeout=3600, enable=true
- */
 const $ = new Env('5G超级盲盒');
 const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
@@ -503,7 +483,7 @@ function taskurl(url) {
     }
   }
 }
-function updateShareCodesCDN(url = 'https://raw.githubusercontent.com/1994112/updateTeam1/master/shareCodes/jd_shareCodes.json') {
+function updateShareCodesCDN(url = 'https://cdn.jsdelivr.net/gh/gitupdate/updateTeam@master/shareCodes/jd_shareCodes.json') {
   return new Promise(resolve => {
     $.get({
       url ,
