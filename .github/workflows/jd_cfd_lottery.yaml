@@ -5,8 +5,8 @@ name: 财富岛抽奖
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '30 13 * * *'
+  #schedule:
+    #- cron: '30 13 * * *'
   
   watch:
     types: started
