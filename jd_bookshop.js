@@ -30,7 +30,7 @@ ADD_CART = $.isNode() ? (process.env.PURCHASE_SHOPS ? process.env.PURCHASE_SHOPS
 // 加入购物车开关，与东东小窝共享
 
 let inviteCodes = [
-  'b8548883c56847d1afcee084adf67750',
+  'b8548883c56847d1afcee084adf67750@b8548883c56847d1afcee084adf67750',
 ]
 
 if ($.isNode()) {
