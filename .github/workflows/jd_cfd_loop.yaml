@@ -5,8 +5,8 @@ name: 财富岛热气球
 
 on:
   workflow_dispatch:
-  #schedule:
-    #- cron: '30 13 * * *'
+  schedule:
+    - cron: '30 */6 * * *'
   
   watch:
     types: started
