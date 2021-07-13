@@ -70,7 +70,7 @@ if ($.isNode()) {
         }
         continue
       }
-      await shareCodesFormat()
+//      await shareCodesFormat()
       await jdBeauty()
     }
   }
