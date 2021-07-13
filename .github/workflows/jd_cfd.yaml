@@ -4,8 +4,8 @@
 name: 京喜财富岛
 on:
   workflow_dispatch:
-  #schedule:
-    #- cron: '0 0-15/1 * * *'
+  schedule:
+    - cron: '0 0-15/1 * * *'
   repository_dispatch:
     types: jd_cfd
 jobs:
