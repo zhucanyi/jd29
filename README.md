@@ -14,3 +14,5 @@
 
 lxk0301-环境变量合集（Secrets）配置[点击查看](https://github.com/inoyna12/jd28/blob/master/githubAction.md)
 
+q群:235081474，有问题可以进去反馈给我
+
