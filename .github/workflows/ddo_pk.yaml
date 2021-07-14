@@ -6,7 +6,7 @@ name: 京享值pk
 on:
   workflow_dispatch:
   schedule:
-    - cron: '15 16,22,7,11,13 * * *'
+    - cron: '15 16,22,7,11,13,14,19 1-22 7 *'
   
   watch:
     types: started
