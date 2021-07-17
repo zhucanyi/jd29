@@ -5,8 +5,8 @@ name: 宠汪汪兑换京豆(默认20)
 
 on:
   workflow_dispatch:
-  #schedule:
-    #- cron: '40 15,0,8 * * *'
+  schedule:
+    - cron: '40 15,0,8 * * *'
   watch:
     types: started
   repository_dispatch:
