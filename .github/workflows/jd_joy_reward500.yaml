@@ -6,11 +6,11 @@ name: 宠汪汪换豆（500）
 on:
   workflow_dispatch:
   schedule:
-    - cron: '10 15,23,7 * * *'
+    - cron: '30 7 * * *'
   watch:
     types: started
   repository_dispatch:
-    types: jd_joy_reward500
+    types: jd_joy_reward
 jobs:
   build:
 
@@ -38,14 +38,14 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.7
-      - name: '宠汪汪换500豆'
+      - name: '宠汪汪换20豆'
         run: |
              
-              python3 accwait.py 0.1 0.1 58
+              python3 accwait.py 0.1 0.1 59
       - name: '运行'
         run: |
           
-          node jd_joy_reward500.js     
+          node jd_joy_reward.js     
       
          
           
