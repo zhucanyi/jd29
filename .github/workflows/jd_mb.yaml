@@ -6,7 +6,8 @@ name: 全民摸冰
 on:
   workflow_dispatch:
   schedule:
-    - cron: '6 1,4 * * *'
+    - cron: '6 1,4 1-31 7 *'
+    - cron: '6 1,4 1-20 8 *'
   
   watch:
     types: started
