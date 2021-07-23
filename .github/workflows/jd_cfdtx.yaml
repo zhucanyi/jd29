@@ -41,7 +41,7 @@ jobs:
       - name: '财富岛提现'
         run: |
              
-              python3 accwait.py 0.1 0.1 59
+              python3 accwait.py 0.1 0.1 58
       - name: '运行'
         run: |
           
