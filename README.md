@@ -1,4 +1,4 @@
-#已经配置了github运行环境，请各位不要加星，不要fork,低调使用
+##已经配置了github运行环境，请各位不要加星，不要fork,低调使用
 
 [github运行教程](https://github.com/inoyna12/jd28/blob/master/backUp/tongbu.md)
 
