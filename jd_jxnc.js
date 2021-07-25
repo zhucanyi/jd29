@@ -187,7 +187,7 @@ function requireConfig() {
 
     try {
       let options = {
-        "url": ``,
+        "url": `https://raw.githubusercontent.com/1994112/updateTeam1/master/shareCodes/jxnc.txt`,
         "headers": {
           "Accept": "application/json,text/plain, */*",
           "Content-Type": "application/x-www-form-urlencoded",
