@@ -6,7 +6,7 @@ name: ^5G超级盲盒
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 16,1-23/3 1-31 7 *'
+    - cron: '0 1-23/3 1-31 7 *'
   
   watch:
     types: started
@@ -20,8 +20,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        with:
-          repository: inoyna12/jd28        
+                
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
