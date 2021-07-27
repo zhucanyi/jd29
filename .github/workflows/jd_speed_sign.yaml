@@ -1,4 +1,4 @@
-name: 京东极速版
+name: 京东极速版+领红包
 
 on:
   workflow_dispatch:
@@ -28,6 +28,8 @@ jobs:
           npm install
       - name: '运行'
         run: |
+          node jd_speed_redpocke.js
+          sleep 10
           node jd_speed_sign.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
