@@ -1,5 +1,7 @@
 /*
 * 根据TG群群友an zi提供的脚本修改而来，套用京喜工厂的脚本。
+* TG交流群：https://t.me/jd_zero205
+* TG通知频道：https://t.me/jd_zero205_tz
 /*
 京喜签到
 已支持IOS双京东账号,Node.js支持N个京东账号
@@ -7,17 +9,17 @@
 ============Quantumultx===============
 [task_local]
 #京喜签到
-5 0 * * * 
+5 0 * * * https://raw.githubusercontent.com/zero205/JD_tencent_scf/main/jd_jxqd.js, tag=京喜签到, enabled=true
 
 ================Loon==============
 [Script]
-cron "5 0 * * *"
+cron "5 0 * * *" script-path=https://raw.githubusercontent.com/zero205/JD_tencent_scf/main/jd_jxqd.js,tag=京喜签到
 
 ===============Surge=================
-京喜签到 = type=cron,cronexp="5 0 * * *"
+京喜签到 = type=cron,cronexp="5 0 * * *",wake-system=1,timeout=20,script-path=https://raw.githubusercontent.com/zero205/JD_tencent_scf/main/jd_jxqd.js
 
 ============小火箭=========
-京喜签到 = type=cron,script-path=, cronexpr="5 0 * * *", timeout=200, enable=true
+京喜签到 = type=cron,script-path=https://raw.githubusercontent.com/zero205/JD_tencent_scf/main/jd_jxqd.js, cronexpr="5 0 * * *", timeout=200, enable=true
  */
 // prettier-ignore
 !function (t, r) { "object" == typeof exports ? module.exports = exports = r() : "function" == typeof define && define.amd ? define([], r) : t.CryptoJS = r() }(this, function () {
@@ -82,11 +84,11 @@ async function jd_jxqd() {
   try {
     await dotask('query?', 'signhb_source')
     await $.wait(1000)
-    await dotask('dotask?task=1', 'signhb_source,task')
-    await $.wait(2000)
-    await dotask('dotask?task=2', 'signhb_source,task')
-    await $.wait(2000)
-    await dotask('dotask?task=3', 'signhb_source,task')
+    for (let j = 0; j < 5; j++) {
+      $.index = j + 1;
+      await dotask(`dotask?task=${$.index}`, 'signhb_source,task')
+      await $.wait(1000)
+    }
   } catch (e) {
     $.logErr(e)
   }
@@ -102,7 +104,7 @@ function dotask(task, stk) {
           console.log(`${JSON.stringify(err)}`)
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
-          console.log(`完成`)
+          console.log(`第${$.index}个任务已完成`)
         }
       } catch (e) {
         $.logErr(e, resp)
