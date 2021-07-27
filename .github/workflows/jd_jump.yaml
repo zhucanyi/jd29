@@ -6,7 +6,7 @@ name: ^跳跳乐瓜分京豆
 on:
   workflow_dispatch:
   schedule:
-    - cron: '1 16,3,13 1-27 7 *'
+    - cron: '1 17,3,13 1-27 7 *'
   
   watch:
     types: started
