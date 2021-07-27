@@ -6,7 +6,7 @@ name: 天天优惠大乐透
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 16,10 * * *'
+    - cron: '0 17,10 * * *'
   repository_dispatch:
     types: jd_daydlt
 jobs:
@@ -17,8 +17,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        with:
-          repository: inoyna12/jd28        
+                
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
