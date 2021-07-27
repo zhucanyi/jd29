@@ -3,7 +3,7 @@ name: 京东极速版
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 4,16,23 * * *'
+    - cron: '0 4,17,23 * * *'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -11,8 +11,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        with:
-          repository: inoyna12/jd28        
+                
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
