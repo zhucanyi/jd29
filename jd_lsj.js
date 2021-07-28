@@ -96,7 +96,7 @@ if ($.isNode()) {
       if ($.UserName === shareCodes[j].usr || $.oneCodeInfo.max) {
         continue;
       }
-      console.log(`${$.UserName}去助力【zero205】`)
+      console.log(`${$.UserName}去助力作者`)
       nick = useInfo[$.UserName];
       await dohelp(shareCodes[j]);
       await $.wait(3000)
