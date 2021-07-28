@@ -6,8 +6,8 @@ name: ^发财大赢家
 on:
   workflow_dispatch:
   schedule:
-    - cron: '41 0-15/3 1-31 7 *'
-    - cron: '41 0-15/3 1-15 8 *'
+    - cron: '41 0-15/2 1-31 7 *'
+    - cron: '41 0-15/2 1-15 8 *'
   
   watch:
     types: started
