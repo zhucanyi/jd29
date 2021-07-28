@@ -20,7 +20,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        
+        with:
+          repository: hajiuhajiu/jdsign1112       
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
@@ -38,7 +39,7 @@ jobs:
          
       - name: '运行'
         run: |
-          node jd_shop_sign.js
+          node jd_dpqd.js
          
           
         env:
