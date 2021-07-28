@@ -63,4 +63,4 @@ jobs:
           IGOT_PUSH_KEY: ${{ secrets.IGOT_PUSH_KEY }}
           PUSH_PLUS_TOKEN: ${{ secrets.PUSH_PLUS_TOKEN }}
           PUSH_PLUS_USER: ${{ secrets.PUSH_PLUS_USER }}
-          JD_JOY_REWARD_NAME: ${{ secrets.JD_JOY_REWARD_NAME }}# 目前可填值为20或者500,脚本默认20，0表示不兑换京豆
+          JD_JOY_REWARD_NAME: ${{ secrets.JD_JOY_REWARD_NAME }} # 目前可填值为20或者500,脚本默认20，0表示不兑换京豆
