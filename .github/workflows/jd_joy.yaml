@@ -6,7 +6,7 @@ name: 宠汪汪+喂食
 on:
   workflow_dispatch:
   schedule:
-    - cron: '30 18,21,0-15/3 * * *'
+    - cron: '30 0-23/3 * * *'
   
   watch:
     types: started
@@ -46,15 +46,14 @@ jobs:
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
-          FRUITSHARECODES: ${{ secrets.FRUITSHARECODES }}
-          FRUIT_BEAN_CARD: ${{ secrets.FRUIT_BEAN_CARD }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_USER_ID: ${{ secrets.TG_USER_ID }}
-          FRUIT_NOTIFY_CONTROL: ${{ secrets.FRUIT_NOTIFY_CONTROL }}
           BARK_SOUND: ${{ secrets.BARK_SOUND }}
           DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
           DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
           IGOT_PUSH_KEY: ${{ secrets.IGOT_PUSH_KEY }}
           PUSH_PLUS_TOKEN: ${{ secrets.PUSH_PLUS_TOKEN }}
           PUSH_PLUS_USER: ${{ secrets.PUSH_PLUS_USER }}
+          JOY_FEED_COUNT: ${{ secrets.JOY_FEED_COUNT }} # 脚本喂食数量,可以填的数字10,20,40,80,其他数字不可.
+
           
