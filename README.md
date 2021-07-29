@@ -14,5 +14,7 @@
 
 lxk0301-环境变量合集（Secrets）配置[点击查看](https://github.com/inoyna12/jd28/blob/master/githubAction.md)
 
+反馈问题群235081474，解决ac运行封号问题
+
 
 
