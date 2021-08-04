@@ -1617,9 +1617,9 @@ async function barGain() {
 async function bigWinner() {
   let res = await getAuthorShareCode2('https://raw.githubusercontent.com/1994112/updateTeam1/master/shareCodes/bigWinner.json')
   if (!res) {
-    $.http.get({url: 'https://purge.jsdelivr.net/gh/Aaron-lv/updateTeam@master/shareCodes/bigWinner.json'}).then((resp) => {}).catch((e) => $.log('刷新CDN异常', e));
+    $.http.get({url: 'https://purge.jsdelivr.net/gh/1994112/updateTeam1@master/shareCodes/bigWinner.json'}).then((resp) => {}).catch((e) => $.log('刷新CDN异常', e));
     await $.wait(1000)
-    res = await getAuthorShareCode2('https://cdn.jsdelivr.net/gh/Aaron-lv/updateTeam@master/shareCodes/bigWinner.json')
+    res = await getAuthorShareCode2('https://cdn.jsdelivr.net/gh/1994112/updateTeam1@master/shareCodes/bigWinner.json')
   }
   $.codeList = getRandomArrayElements([...(res || [])], [...(res || [])].length);
   for (let vo of $.codeList) {
