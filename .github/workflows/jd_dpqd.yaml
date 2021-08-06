@@ -6,7 +6,7 @@ name: 店铺签到
 on:
   workflow_dispatch:
   schedule:
-    - cron: '30 0,12 * * *'
+    - cron: '30 14,16 * * *'
   
   watch:
     types: started
@@ -38,7 +38,7 @@ jobs:
          
       - name: '运行'
         run: |
-          node jd_shop_sign.js
+          node jd_dpqd.js
          
           
         env:
