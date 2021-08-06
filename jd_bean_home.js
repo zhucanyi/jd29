@@ -43,9 +43,9 @@ const JD_API_HOST = 'https://api.m.jd.com/';
   $.newShareCodes = []
   $.authorCode = await getAuthorShareCode('https://raw.githubusercontent.com/1994112/updateTeam1/master/shareCodes/jd_updateBeanHome.json')
   if (!$.authorCode) {
-    $.http.get({url: 'https://purge.jsdelivr.net/gh/Aaron-lv/updateTeam@master/shareCodes/jd_updateBeanHome.json'}).then((resp) => {}).catch((e) => $.log('刷新CDN异常', e));
+    $.http.get({url: 'https://purge.jsdelivr.net/gh/1994112/updateTeam1@master/shareCodes/jd_updateBeanHome.json'}).then((resp) => {}).catch((e) => $.log('刷新CDN异常', e));
     await $.wait(1000)
-    $.authorCode = await getAuthorShareCode('https://cdn.jsdelivr.net/gh/Aaron-lv/updateTeam@master/shareCodes/jd_updateBeanHome.json') || []
+    $.authorCode = await getAuthorShareCode('https://cdn.jsdelivr.net/gh/1994112/updateTeam1@master/shareCodes/jd_updateBeanHome.json') || []
   }
   if (!cookiesArr[0]) {
     $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
@@ -59,7 +59,7 @@ const JD_API_HOST = 'https://api.m.jd.com/';
       $.isLogin = true;
       $.nickName = '';
       message = '';
-      uuid = randomString(40)
+      uuid = randomString()
       await TotalBean();
       console.log(`\n******开始【京东账号${$.index}】${$.nickName || $.UserName}*********\n`);
       if (!$.isLogin) {
@@ -375,12 +375,12 @@ function sceneGetCoupon() {
     })
   })
 }
-function randomString(e) {
-  e = e || 32;
-  let t = "abcdefhijkmnprstwxyz2345678", a = t.length, n = "";
-  for (i = 0; i < e; i++)
-    n += t.charAt(Math.floor(Math.random() * a));
-  return n
+function randomString() {
+  return Math.random().toString(16).slice(2, 10) +
+    Math.random().toString(16).slice(2, 10) +
+    Math.random().toString(16).slice(2, 10) +
+    Math.random().toString(16).slice(2, 10) +
+    Math.random().toString(16).slice(2, 10)
 }
 
 function getRandomInt(min, max) {
