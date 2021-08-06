@@ -39,6 +39,8 @@ jobs:
       - name: '运行'
         run: |
           node jd_dpqd.js
+          sleep 10
+          node jd_dpqd2.js
          
           
         env:
