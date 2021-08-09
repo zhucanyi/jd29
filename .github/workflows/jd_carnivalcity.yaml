@@ -39,7 +39,7 @@ jobs:
          
       - name: '运行'
         run: |
-          node gua_carnivalcity.js
+          node jd_carnivalcity.js
          
           
         env:
