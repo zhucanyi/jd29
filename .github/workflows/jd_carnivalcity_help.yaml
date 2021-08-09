@@ -5,8 +5,8 @@ name: ^手机狂欢城账号互助
 
 on:
   workflow_dispatch:
-  #schedule:
-    #- cron: '30 16,0,14 * * *'
+  schedule:
+    - cron: '30 16,0,14 * * *'
   
   watch:
     types: started
