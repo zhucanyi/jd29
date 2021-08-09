@@ -5,8 +5,8 @@ name: 5G盲盒
 
 on:
   workflow_dispatch:
-  #schedule:
-    #- cron: '0 16,0-15/3 * * *'
+  schedule:
+    - cron: '0 16,0-15/3 * * *'
   
   watch:
     types: started
