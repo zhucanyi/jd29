@@ -6,7 +6,7 @@ name: 每日抽奖
 on:
     workflow_dispatch:
     schedule:
-        - cron: "10 17,5 * * *"
+        - cron: "13 14,15,17 * * *"
     watch:
         types: [started]
     repository_dispatch:
