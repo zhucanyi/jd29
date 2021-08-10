@@ -7,11 +7,10 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '30 15 * * *'
- 
   watch:
     types: started
   repository_dispatch:
-    types: 测试
+    types: jd_joy_reward
 jobs:
   build:
 
@@ -20,7 +19,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-                
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
@@ -39,10 +38,10 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.7
-      - name: '定时执行'
+      - name: '定时运行'
         run: |
              
-              python3 accwait.py 0.1 0.1 59   
+              python3 accwait.py 0.1 0.1 59
       - name: '运行'
         run: |
           node jd_shop.js
