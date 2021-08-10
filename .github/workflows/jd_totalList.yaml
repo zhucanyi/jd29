@@ -1,7 +1,7 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: 京东快递+京东汽车+领京豆额外奖励
+name: 京东快递+京东汽车+领京豆额外奖励+闪购盲盒
 
 on:
   workflow_dispatch:
@@ -35,6 +35,8 @@ jobs:
           node jd_car.js
           sleep 10
           node jd_bean_home.js
+          sleep 10
+          node jd_sgmh.js
           
           
        env:
