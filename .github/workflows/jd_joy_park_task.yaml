@@ -38,8 +38,7 @@ jobs:
          
       - name: '运行'
         run: |
-          node jd_joypark_open.js
-          sleep 10
+          
           node jd_joy_park_task.js
           sleep 10
           node jd_joy_park.js
