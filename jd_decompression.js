@@ -9,7 +9,7 @@ const notify = $.isNode() ? require('./sendNotify') : '';
 let cookiesArr = [];
 $.activityID = 'dz2107100008586804';
 $.shopid = '1000085868';
-const inCode= ['38667784c749f32a6da4bffc2e8fb12w'];
+const inCode= ['shareUuid=8aa8ed4274d0499b8f36c4fc52dcc5e7'];
 $.shareUuid = getRandomArrayElements(inCode,1)[0];
 if ($.isNode()) {
     Object.keys(jdCookieNode).forEach((item) => {
@@ -117,7 +117,7 @@ async function main() {
         await takePostRequest('draw');
         await $.wait(1500);
     }
-    if($.shareUuid === '38667784c749f32a6da4bffc2e8fb12w'){
+    if($.shareUuid === 'shareUuid=8aa8ed4274d0499b8f36c4fc52dcc5e7'){
         $.shareUuid = $.activityData.actorUuid;
     }
 }
