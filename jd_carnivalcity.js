@@ -114,7 +114,7 @@ async function JD818() {
     // await doHelp();
     await myRank();//领取往期排名奖励
     await getListRank();
-    await getListIntegral();
+ //   await getListIntegral();
     await getListJbean();
     await check();//查询抽奖记录(未兑换的，发送提醒通知);
     await showMsg()
