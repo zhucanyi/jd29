@@ -40,7 +40,7 @@ jobs:
         run: |
           node jd_small_home.js
           sleep 10
-          node jd_jxsign.js
+          node jx_sign.js
           sleep 10
           node jd_jdzz.js
           sleep 10
