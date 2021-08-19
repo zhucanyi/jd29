@@ -1,6 +1,27 @@
 /*
-店铺签到，各类店铺签到，有新的店铺直接添加token即可
-搬运cui521大佬脚本，请勿外传！！！
+店铺签到 各类店铺签到，有新的店铺直接添加token即可
+活动地址:
+活动时间：长期
+更新时间：2021-07-13 12:00
+脚本兼容: QuantumultX, Surge,Loon, JSBox, Node.js
+搬运cui521大佬脚本
+店铺签到抓取token 
+step 1 : 抓取地址为  https://api.m.jd.com/client.action?functionId=genToken 的接口  拿到body内容
+step 2 : 对body 进行两次url解码   得到地址https://h5.m.jd.com/babelDiy/Zeus/2PAAf74aG3D61qvfKUM5dxUssJQ9/index.html?token=517AD3C83C8D5EE281BB808BFF283C17   取token后面参数即可
+//方式一
+//export MyShopToken1='30DE3F2E8B4278A120007C8CD0D4F835'
+//export MyShopToken2='3C0B9CE1F01623C77ADE9F90AFA0FD5F'
+//export MyShopToken3='4A02128626C3691B6A98341C3F8CD27E'
+//export MyShopToken4='81F530105DFF92EF55FF36F1E2097066'
+//export MyShopToken5='9B45653CFEFE49045C2748E8AA9E37B4'
+//export MyShopToken6='B8157420EE77DDA819C2B3BAF991797B'
+//export MyShopToken7='BB80E573A5329D6AD511900955F6E12C'
+//export MyShopToken8='DCD2E2F3BECE2344E21ABB33D071BFAE'
+//export MyShopToken9='F9C7E6B7E724B7DB0CE232508C97490D'
+//
+//export SHOP_TOKENS="${MyShopToken1}&${MyShopToken2}&${MyShopToken3}&${MyShopToken4}&${MyShopToken5}&${MyShopToken6}&${MyShopToken7}&${MyShopToken8}&${MyShopToken9}"
+//方式二
+//export SHOP_TOKENS="30DE3F2E8B4278A120007C8CD0D4F835&3C0B9CE1F01623C77ADE9F90AFA0FD5F&4A02128626C3691B6A98341C3F8CD27E&81F530105DFF92EF55FF36F1E2097066&9B45653CFEFE49045C2748E8AA9E37B4&B8157420EE77DDA819C2B3BAF991797B&BB80E573A5329D6AD511900955F6E12C&DCD2E2F3BECE2344E21ABB33D071BFAE&F9C7E6B7E724B7DB0CE232508C97490D"
 */
 const $ = new Env('店铺签到');
 
