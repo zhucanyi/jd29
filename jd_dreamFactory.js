@@ -6,24 +6,24 @@
 活动入口：京东APP-游戏与互动-查看更多-京喜工厂
 或者: 京东APP首页搜索 "玩一玩" ,造物工厂即可
 
-// 已添加自己账号内部互助，有剩余助力次数再帮我助力
+//已添加自己账号内部互助，有剩余助力次数再帮我助力
 
 已支持IOS双京东账号,Node.js支持N个京东账号
 脚本兼容: QuantumultX, Surge, Loon, JSBox, Node.js
 ============Quantumultx===============
 [task_local]
 #京喜工厂
-10 * * * * jd_dreamFactory.js, tag=京喜工厂, img-url=https://github.com/58xinian/icon/raw/master/jdgc.png, enabled=true
+10 0,6-23 * * * jd_dreamFactory.js, tag=京喜工厂, img-url=https://github.com/58xinian/icon/raw/master/jdgc.png, enabled=true
 
 ================Loon==============
 [Script]
-cron "10 * * * *" script-path=jd_dreamFactory.js,tag=京喜工厂
+cron "10 0,6-23 * * *" script-path=jd_dreamFactory.js,tag=京喜工厂
 
 ===============Surge=================
-京喜工厂 = type=cron,cronexp="10 * * * *",wake-system=1,timeout=3600,script-path=jd_dreamFactory.js
+京喜工厂 = type=cron,cronexp="10 0,6-23 * * *",wake-system=1,timeout=3600,script-path=jd_dreamFactory.js
 
 ============小火箭=========
-京喜工厂 = type=cron,script-path=jd_dreamFactory.js, cronexpr="10 * * * *", timeout=3600, enable=true
+京喜工厂 = type=cron,script-path=jd_dreamFactory.js, cronexpr="10 0,6-23 * * *", timeout=3600, enable=true
 
  */
 // prettier-ignore
@@ -43,13 +43,14 @@ let notifyLevel = $.isNode() ? process.env.JXGC_NOTIFY_LEVEL || 2 : 2;
 const randomCount = $.isNode() ? 20 : 0;
 let tuanActiveId = ``, hasSend = false;
 const jxOpenUrl = `openjd://virtual?params=%7B%20%22category%22:%20%22jump%22,%20%22des%22:%20%22m%22,%20%22url%22:%20%22https://wqsd.jd.com/pingou/dream_factory/index.html%22%20%7D`;
-let cookiesArr = [], cookie = '', message = '', allMessage = '', jdDreamFactoryShareArr = [];
+let cookiesArr = [], cookie = '', message = '', allMessage = '', jdDreamFactoryShareArr = [], newShareCodes;
 const inviteCodes = [
   '3XXm3AfmSd3gdxu0dMzAZQ==@_PqB6bOYJvvgeDYqwRhytA==',
 ];
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 $.tuanIds = [];
 $.appId = 10001;
+$.newShareCode = [];
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
     cookiesArr.push(jdCookieNode[item])
@@ -99,6 +100,7 @@ if ($.isNode()) {
     if (cookiesArr[j]) {
       cookie = cookiesArr[j];
       $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1])
+      $.index = j + 1;
       await helpFriends();
     }
   }
@@ -456,9 +458,10 @@ async function helpFriends() {
   if ($.canHelpFlag) {
     await shareCodesFormat();
     if ($.isNode() && !process.env.DREAM_FACTORY_SHARE_CODES) {
-      newShareCode = [...(jdDreamFactoryShareArr || []), ...(newShareCodes || [])]
+      console.log(`您未填写助力码变量，开始账号内互助，再帮作者助力`);
+      $.newShareCode = [...(jdDreamFactoryShareArr || []), ...(newShareCodes || [])]
     } else {
-      newShareCode = newShareCodes
+      $.newShareCode = newShareCodes
     }
     for (let code of $.newShareCode) {
       if (code) {
@@ -1390,20 +1393,20 @@ async function showMsg() {
 //格式化助力码
 function shareCodesFormat() {
   return new Promise(async resolve => {
-    // console.log(`第${$.index}个京东账号的助力码:::${$.shareCodesArr[$.index - 1]}`)
-    $.newShareCodes = [];
+    console.log(`第${$.index}个京东账号的助力码:::${$.shareCodesArr[$.index - 1]}`)
+    newShareCodes = [];
     if ($.shareCodesArr[$.index - 1]) {
-      $.newShareCodes = $.shareCodesArr[$.index - 1].split('@');
+      newShareCodes = $.shareCodesArr[$.index - 1].split('@');
     } else {
       // console.log(`由于您第${$.index}个京东账号未提供shareCode,将采纳本脚本自带的助力码\n`)
       const tempIndex = $.index > inviteCodes.length ? (inviteCodes.length - 1) : ($.index - 1);
-      $.newShareCodes = inviteCodes[tempIndex].split('@');
+      newShareCodes = inviteCodes[tempIndex].split('@');
     }
     // const readShareCodeRes = await readShareCode();
     // if (readShareCodeRes && readShareCodeRes.code === 200) {
-    //   $.newShareCodes = [...new Set([...$.newShareCodes, ...(readShareCodeRes.data || [])])];
+    //   newShareCodes = [...new Set([...newShareCodes, ...(readShareCodeRes.data || [])])];
     // }
-    // console.log(`第${$.index}个京东账号将要助力的好友${JSON.stringify($.newShareCodes)}`)
+    console.log(`第${$.index}个京东账号将要助力的好友${JSON.stringify(newShareCodes)}`)
     resolve();
   })
 }
