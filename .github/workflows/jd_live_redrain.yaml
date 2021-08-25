@@ -1,12 +1,12 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: 超级直播间红包雨(没豆，暂时禁用)
+name: 超级直播间红包雨
 
 on:
   workflow_dispatch:
-  #schedule:
-    #- cron: '0 */1 * * *'
+  schedule:
+    - cron: '40 */1 * * *'
   watch:
     types: started
   repository_dispatch:
@@ -34,14 +34,14 @@ jobs:
       - name: npm install
         run: |
           npm install
-#      - name: Set up Python 3.7
-#        uses: actions/setup-python@v2
-#        with:
-#          python-version: 3.7
-#      - name: '红包雨'
-#        run: |
-#             
-#              python3 accwait.py 0.1 0.1 59
+      - name: Set up Python 3.7
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
+      - name: '红包雨'
+        run: |
+             
+              python3 accwait.py 0.1 0.1 59
       - name: '运行'
         run: |
           
