@@ -13,7 +13,7 @@
 不会每次运行脚本都投入电力
 只有当心仪的商品存在，并且收集起来的电量满足当前商品所需电力，才投入
 
-// 已添加自己账号内部互助，有剩余助力次数再帮我助力
+//已添加自己账号内部互助，有剩余助力次数再帮我助力
 
 已支持IOS双京东账号,Node.js支持N个京东账号
 脚本兼容: QuantumultX, Surge, Loon, JSBox, Node.js
@@ -54,6 +54,7 @@ let wantProduct = ``;//心仪商品名称
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
 const inviteCodes = ['T0225KkcRxgY_VbTIx-llf8KJwCjVWnYaS5kRrbA'];
 let myInviteCode;
+$.newShareCode = [];
 !(async () => {
   await requireConfig();
   if (!cookiesArr[0]) {
@@ -79,7 +80,6 @@ let myInviteCode;
         }
         continue
       }
-      await shareCodesFormat();
       await jdFactory()
     }
   }
@@ -87,6 +87,8 @@ let myInviteCode;
     if (cookiesArr[j]) {
       cookie = cookiesArr[j];
       $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1])
+      $.index = j + 1;
+      await shareCodesFormat();
       await helpFriends();
     }
   }
@@ -257,12 +259,12 @@ async function algorithm() {
 }
 async function helpFriends() {
   if ($.isNode() && !process.env.DDFACTORY_SHARECODES) {
-    console.log(`未填写助力码变量，开始账号内互助，再帮【zero205】助力`);
-    newShareCode = [...(jdFactoryShareArr || []), ...(newShareCodes || [])]
+    console.log(`您未填写助力码变量，开始账号内互助，再帮作者助力`);
+    $.newShareCode = [...(jdFactoryShareArr || []), ...(newShareCodes || [])]
   } else {
-    newShareCode = newShareCodes
+    $.newShareCode = newShareCodes
   }
-  for (let code of newShareCode) {
+  for (let code of $.newShareCode) {
     if (!code) continue
     const helpRes = await jdfactory_collectScore(code);
     if (helpRes.code === 0 && helpRes.data.bizCode === -7) {
@@ -665,7 +667,7 @@ function jdfactory_getHomeData() {
 function readShareCode() {
   console.log(`开始`)
   return new Promise(async resolve => {
-    $.get({ url: `http://www.helpu.cf/jdcodes/gecode.php?type=ddfactory&num=${randomCount}`, timeout: 10000 }, (err, resp, data) => {
+    $.get({ url: `http://www.helpu.cf/jdcodes/getode.php?type=ddfactory&num=${randomCount}`, timeout: 10000 }, (err, resp, data) => {
       try {
         if (err) {
           console.log(`${JSON.stringify(err)}`)
@@ -713,7 +715,7 @@ function submitCode() {
 //格式化助力码
 function shareCodesFormat() {
   return new Promise(async resolve => {
-    // console.log(`第${$.index}个京东账号的助力码:::${$.shareCodesArr[$.index - 1]}`)
+    console.log(`第${$.index}个京东账号的助力码:::${$.shareCodesArr[$.index - 1]}`)
     newShareCodes = [];
     if ($.shareCodesArr[$.index - 1]) {
       newShareCodes = $.shareCodesArr[$.index - 1].split('@');
@@ -726,7 +728,7 @@ function shareCodesFormat() {
     // if (readShareCodeRes && readShareCodeRes.code === 200) {
     //   newShareCodes = [...new Set([...newShareCodes, ...(readShareCodeRes.data || [])])];
     // }
-    // console.log(`第${$.index}个京东账号将要助力的好友${JSON.stringify(newShareCodes)}`)
+    console.log(`第${$.index}个京东账号将要助力的好友${JSON.stringify(newShareCodes)}`)
     resolve();
   })
 }
