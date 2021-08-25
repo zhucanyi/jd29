@@ -31,7 +31,7 @@ let helpAuthor = true;
 const randomCount = $.isNode() ? 5 : 5;
 let cash_exchange = false;//是否消耗2元红包兑换200京豆，默认否
 const inviteCodes = [
-  ``,
+  `eU9Ya-qzbv4i8muEynsThQ@eU9YNIXvL4tajD-ClApF`,
 ]
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
@@ -49,11 +49,11 @@ let allMessage = '';
     return;
   }
   await requireConfig()
-  $.authorCode = await getAuthorShareCode('https://raw.githubusercontent.com/1994112/updateTeam1/master/shareCodes/jd_updateCash.json')
+  $.authorCode = await getAuthorShareCode('https://raw.githubusercontent.com/Aaron-lv/updateTeam/master/shareCodes/jd_updateCash.json')
   if (!$.authorCode) {
-    $.http.get({url: 'https://purge.jsdelivr.net/gh/1994112/updateTeam1@master/shareCodes/jd_updateCash.json'}).then((resp) => {}).catch((e) => $.log('刷新CDN异常', e));
+    $.http.get({url: 'https://purge.jsdelivr.net/gh/Aaron-lv/updateTeam@master/shareCodes/jd_updateCash.json'}).then((resp) => {}).catch((e) => $.log('刷新CDN异常', e));
     await $.wait(1000)
-    $.authorCode = await getAuthorShareCode('https://cdn.jsdelivr.net/gh/1994112/updateTeam1@master/shareCodes/jd_updateCash.json') || []
+    $.authorCode = await getAuthorShareCode('https://cdn.jsdelivr.net/gh/Aaron-lv/updateTeam@master/shareCodes/jd_updateCash.json') || []
   }
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
@@ -446,9 +446,10 @@ function getSign(functionid, body, uuid) {
       "clientVersion":"10.1.0"
     }
     let options = {
-      url: `https://service-ft43gk13-1302176878.sh.apigw.tencentcs.com/release/ddo`,
+      url: `https://jdsign.cf/ddo`,
       body: JSON.stringify(data),
       headers: {
+        "Host": "jdsign.tk",
         "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/87.0.4280.88"
       }
     }
