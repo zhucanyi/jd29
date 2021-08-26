@@ -31,14 +31,13 @@
 
 ![image-20201111144804807](assets/set_sectet_pat.png)
 
+cookie填写跟上面一样
+
+`Settings`-`Secrets`里面添加`JD_COOKIE`,`Value`填写你获取的cookie
+
+多条 cookie 用`&`或者换行隔开，支持无数条 cookie(由于Action的单次最大运行时长为6H，某些脚本运行时间过长，建议一个仓库添加最多5个`cookie`以保证每个账号都完全运行所有脚本，`cookie`比较多的用户可以多创建几个仓库)
 
 
+### 激活仓库
 
 
-三:申请完毕后，在新仓库分支中点击Settings-Secrets-New secret，name填PAT，框里面填写你第二步复制的PAT,保存即可。
-接着再点击New secret，name填JD_COOKIE，框里面填写你的账号cookie，多账号换行。
-
-
-
-
-四:点击仓库的Code，把上方的Star点亮，完毕
