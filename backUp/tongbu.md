@@ -2,14 +2,19 @@
 
 ### 导入我的仓库
 
-一:[点击导入仓库](https://github.com/new/import)，`URL框`填写https://github.com/inoyna12/jd28
-`Repository Name`填写仓库名字(随意设置)，点击绿色按钮，等待导入完成(不要把仓库设为私有，会运行失败)。
+[点击导入仓库](https://github.com/new/import)
+
+`URL框`填写https://github.com/inoyna12/jd28
+
+`Repository Name`填写仓库名字(随意设置)，点击`Begin import`，等待导入完成(不要把仓库设为私有，会运行失败)。
 
 
 
+### 申请PAT
 
+[申请PAT](https://github.com/settings/tokens/new)
 
-二:[申请PAT](https://github.com/settings/tokens/new)，Note下面框随意填写，把 repo和workflow 两部分勾上即可。
+Note下面框随意填写，把 repo和workflow 两部分勾上即可。
 点击最下方的创建，生成的PAT复制下来。
 
 
