@@ -1,8 +1,9 @@
-自动同步教程:
+# 通过reposync方式进行代码同步
 
+### 导入我的仓库
 
-一:[点击导入仓库](https://github.com/new/import)，URL框填写https://github.com/inoyna12/jd28
-Repository Name填写仓库名字，点击绿色按钮，等待导入完成(不要把仓库设为私有，会运行失败)。
+一:[点击导入仓库](https://github.com/new/import)，`URL框`填写https://github.com/inoyna12/jd28
+`Repository Name`填写仓库名字(随意设置)，点击绿色按钮，等待导入完成(不要把仓库设为私有，会运行失败)。
 
 
 
