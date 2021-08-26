@@ -4,7 +4,7 @@
 
 [点击导入仓库](https://github.com/new/import)
 
-`URL框`填写https://github.com/inoyna12/jd28
+`URL框`填写`https://github.com/inoyna12/jd28`
 
 `Repository Name`填写仓库名字(随意设置)，点击`Begin import`，等待导入完成(不要把仓库设为私有，会运行失败)。
 
