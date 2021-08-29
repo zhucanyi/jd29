@@ -39,6 +39,7 @@ if ($.isNode()) {
   })
   if (process.env.JD_DEBUG && process.env.JD_DEBUG === 'false') console.log = () => {
   };
+//  if(JSON.stringify(process.env).indexOf('GITHUB')>-1) process.exit(0)
 } else {
   cookiesArr = [$.getdata('CookieJD'), $.getdata('CookieJD2'), ...jsonParse($.getdata('CookiesJD') || "[]").map(item => item.cookie)].filter(item => !!item);
 }
@@ -86,7 +87,7 @@ async function jdMs() {
     await getTaskList()
   }
   await getUserInfo(false)
-  await showMsg()
+  // await showMsg()
 }
 
 function getActInfo() {
@@ -123,7 +124,7 @@ function getUserInfo(info=true) {
         } else {
           if (safeGet(data)) {
             data = JSON.parse(data)
-            if (data.code === 2041) {
+            if (data.code === 2042) {
               $.score = data.result.assignment.assignmentPoints || 0
               if(info) console.log(`当前秒秒币${$.score}`)
             }
