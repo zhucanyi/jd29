@@ -1,4 +1,4 @@
-[新号运行防封教程](/backUp/ccc.md)
+[Action运行常见问题](/backUp/ccc.md)
 
 # 通过reposync方式进行代码同步运行脚本
 
