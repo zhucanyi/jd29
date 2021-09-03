@@ -1,7 +1,7 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: 进店领豆+京东签到+排行榜+摇京豆
+name: 进店领豆+京东签到+排行榜+摇京豆+领金贴
 
 on:
   workflow_dispatch:
@@ -44,6 +44,8 @@ jobs:
           node jd_rankingList.js
           sleep 10
           node jd_club_lottery.js
+          sleep 10
+          node jd_jintie.js
           
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
