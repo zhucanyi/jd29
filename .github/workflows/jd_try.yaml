@@ -6,7 +6,7 @@ name: 京东试用(需添加环境变量运行)
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 17,10 * * *'
+    - cron: '0 17,5 * * *'
   watch:
         types: started
   repository_dispatch:
