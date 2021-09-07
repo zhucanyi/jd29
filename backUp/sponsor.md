@@ -4,8 +4,8 @@
 
 京东app-我的钱包-查看金贴金额，然后扫描下方二维码:
 
-![image-20201111142402230](backUp/jintie.jpg)
+![image-20201111142402230](/jintie.jpg)
 
-![image-20201111142402231](backUp/jintie2.jpg)
+![image-20201111142402231](/jintie2.jpg)
 
 支付金贴金额+0.01，就可以抵扣了
