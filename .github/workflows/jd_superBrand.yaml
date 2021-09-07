@@ -62,4 +62,4 @@ jobs:
           QYWX_AM: ${{ secrets.QYWX_AM }}
           QQ_SKEY: ${{ secrets.QQ_SKEY }}
           QQ_MODE: ${{ secrets.QQ_MODE }}
-          
+          OPEN_CARD: ${{ secrets.OPEN_CARD }}
