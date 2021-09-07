@@ -78,7 +78,7 @@ const JD_API_HOST = 'https://api.m.jd.com/api';
     $.canHelp = true;
     $.redPacketId = [...new Set($.redPacketId)];
     if (!isLoginInfo[$.UserName]) continue
-    if (cookiesArr && cookiesArr.length >= 2) {
+    if (cookiesArr && cookiesArr.length >= 15) {
       console.log(`\n\n自己账号内部互助`);
       for (let j = 0; j < $.redPacketId.length && $.canHelp; j++) {
         console.log(`账号 ${$.index} ${$.UserName} 开始给 ${$.redPacketId[j]} 进行助力`)
