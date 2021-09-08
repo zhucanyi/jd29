@@ -4,4 +4,3 @@
 
 [Secrets环境变量](/backUp/githubAction.md)
 
-[如果你觉得好用的话可以用免费的金贴打赏一下，感谢](/backUp/sponsor.md)
