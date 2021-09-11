@@ -1,12 +1,12 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: ^中秋酒水(添加环境变量运行)
+name: ^开卡活动脚本合集(按照运行日志添加环境变量运行)
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '30 1,13 1-21 9 *'
+    - cron: '30 1,13 * 9 *'
   
   watch:
     types: started
@@ -39,8 +39,11 @@ jobs:
          
       - name: '运行'
         run: |
-          node gua_opencard20.js
-         
+          node gua_opencard20.js # 中秋酒水9.1-9.21
+          sleep 10
+          node gua_opencard22.js # 奔跑吧开学季9.3-9.13
+          sleep 10
+          node gua_opencard23.js # 福满中秋9.6-9.17
           
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
@@ -63,3 +66,10 @@ jobs:
           QQ_SKEY: ${{ secrets.QQ_SKEY }}
           QQ_MODE: ${{ secrets.QQ_MODE }}
           guaopencard20: ${{ secrets.guaopencard20 }}
+          guaopencard22: ${{ secrets.guaopencard22 }}
+          guaopencard_draw22: ${{ secrets.guaopencard_draw22 }}
+          guaopencard_addSku22: ${{ secrets.guaopencard_addSku22 }}
+          guaopencard23: ${{ secrets.guaopencard23 }}
+          guaopencard_draw23: ${{ secrets.guaopencard_draw23 }}
+          guaopencard_addSku23: ${{ secrets.guaopencard_addSku23 }}
+       
