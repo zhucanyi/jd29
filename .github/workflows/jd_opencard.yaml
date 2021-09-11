@@ -39,11 +39,11 @@ jobs:
          
       - name: '运行'
         run: |
-          node gua_opencard20.js # 中秋酒水9.1-9.21
+          node gua_opencard20.js# 中秋酒水9.1-9.21
           sleep 10
-          node gua_opencard22.js # 奔跑吧开学季9.3-9.13
+          node gua_opencard22.js# 奔跑吧开学季9.3-9.13
           sleep 10
-          node gua_opencard23.js # 福满中秋9.6-9.17
+          node gua_opencard23.js# 福满中秋9.6-9.17
           
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
