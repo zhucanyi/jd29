@@ -65,7 +65,7 @@ jobs:
           QYWX_AM: ${{ secrets.QYWX_AM }}
           QQ_SKEY: ${{ secrets.QQ_SKEY }}
           QQ_MODE: ${{ secrets.QQ_MODE }}
-          guaopencard20: ${{ secrets.guaopencard20 }}
+          guaopencard20: ${{ secrets.guaopencard20 }} #是1
           guaopencard22: ${{ secrets.guaopencard22 }}
           guaopencard_draw22: ${{ secrets.guaopencard_draw22 }}
           guaopencard_addSku22: ${{ secrets.guaopencard_addSku22 }}
