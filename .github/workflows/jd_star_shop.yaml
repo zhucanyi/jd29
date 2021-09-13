@@ -5,8 +5,8 @@ name: ^明星小店
 
 on:
   workflow_dispatch:
-  #schedule:
-    #- cron: '12 11 10-17 9 *'
+  schedule:
+    - cron: '12 11 10-17 9 *'
   
   watch:
     types: started
