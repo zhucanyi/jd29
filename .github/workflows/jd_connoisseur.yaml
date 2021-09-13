@@ -5,8 +5,8 @@ name: ^内容鉴赏官
 
 on:
   workflow_dispatch:
-  #schedule:
-    #- cron: '15 19,22 * * *'
+  schedule:
+    - cron: '15 19,22 * * *'
   
   watch:
     types: started
