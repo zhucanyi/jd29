@@ -5,8 +5,8 @@ name: ^跳跳乐
 
 on:
   workflow_dispatch:
-  #schedule:
-    #- cron: '1 16,3,13 * * *'
+  schedule:
+    - cron: '1 16,3,13 * * *'
   
   watch:
     types: started
